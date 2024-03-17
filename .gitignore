@@ -64,3 +64,4 @@ typings/
 template.md
 schemas-diagram.drawio
 populatedb.js
+itemsUpdate.js

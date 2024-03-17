@@ -20,6 +20,7 @@ const itemSchema = new Schema({
     required: true,
     enum: ['kg', 'liters', 'pack', 'unit', 'other'],
   },
+  tags: [String],
 
   // Relational Data
   category: {
