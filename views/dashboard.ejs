@@ -1,0 +1,19 @@
+<%- include('layout') %>
+
+<h1 class="bg-fuchsia-400 text-5xl"><%= title %></h1>
+
+<a href="/inventory/items">Go to inventory</a>
+
+<h2>Categories</h2>
+<ul>
+  <% categories.forEach(category => { %>
+    <li><a href="/inventory/category/<%= category._id %>/detail"><%= category.name %></a></li>
+  <% }) %>
+</ul>
+
+<h2>Suppliers</h2>
+<ul>
+  <% suppliers.forEach(supplier => { %>
+    <li><a href="/inventory/supplier/<%= supplier._id %>/detail"><%= supplier.name %></a></li>
+  <% }) %>
+</ul>

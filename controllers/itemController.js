@@ -1,13 +1,25 @@
 // TODO: each item view will have an input and an update button to update number (or other inputs (which will be displayed on edit item?))
 const { body, validationResult } = require('express-validator');
 const asyncHandler = require('express-async-handler');
-const item = require('../models/item');
-const category = require('../models/category');
-const supplier = require('../models/supplier');
+const Item = require('../models/item');
+const Category = require('../models/category');
+const Supplier = require('../models/supplier');
 
 exports.dashboard = asyncHandler(async (req, res, next) => {
   // Get categories and suppliers and render them (show inventory as a link only)
-  res.render('dashboard', {});
+  console.log('Fetching categories and suppliers');
+  const [allCategories, allSuppliers] = await Promise.all([
+    Category.find({}, 'name').sort({ name: 1 }).exec(),
+    Supplier.find({}, { name: 1, 'contactInfo.phone': 1 }),
+  ]);
+
+  console.log(allCategories, allSuppliers);
+
+  res.render('dashboard', {
+    title: 'Dashboard',
+    categories: allCategories,
+    suppliers: allSuppliers,
+  });
 });
 
 exports.item_list = asyncHandler(async (req, res, next) => {
